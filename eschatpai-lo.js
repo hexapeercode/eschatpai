@@ -1,21 +1,25 @@
 (function() {
-  const script1 = document.createElement('script');
-  script1.src = 'https://cdn.botpress.cloud/webchat/v3.6/inject.js';
-  document.head.appendChild(script1);
+  // Esperar a que Botpress cargue (más tiempo)
+  setTimeout(function() {
+    const script1 = document.createElement('script');
+    script1.src = 'https://cdn.botpress.cloud/webchat/v3.6/inject.js';
+    document.head.appendChild(script1);
+    
+    const script2 = document.createElement('script');
+    script2.src = 'https://files.bpcontent.cloud/2026/05/19/17/20260519173633-PCRHW6DM.js';
+    script2.defer = true;
+    document.head.appendChild(script2);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+      [id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] {
+        z-index: 999999 !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }, 1000); // Esperar 1 segundo
   
-  const script2 = document.createElement('script');
-  script2.src = 'https://files.bpcontent.cloud/2026/05/19/17/20260519173633-PCRHW6DM.js';
-  script2.defer = true;
-  document.head.appendChild(script2);
-  
-  const style = document.createElement('style');
-  style.textContent = `
-    [id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] {
-      z-index: 999999 !important;
-    }
-  `;
-  document.head.appendChild(style);
-  
+  // Ocultar footer (ejecutar después de cargar)
   function hideBootpressFooter() {
     const root = Array.from(document.querySelectorAll('div')).find(el => {
       try {
@@ -40,6 +44,8 @@
     });
   }
   
-  setInterval(hideBootpressFooter, 300);
-  document.addEventListener('DOMContentLoaded', hideBootpressFooter);
+  // Ejecutar constantemente después de 2 segundos
+  setTimeout(function() {
+    setInterval(hideBootpressFooter, 300);
+  }, 2000);
 })();
