@@ -18,78 +18,54 @@
       z-index: 999999 !important;
     }
     .espai-proactive-bubble {
-      position: fixed;
-      bottom: 95px;
-      right: 90px;
-      background: #fff;
-      color: #333;
-      padding: 14px 16px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 500;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-      cursor: pointer;
-      z-index: 999998;
-      animation: slideIn 0.4s ease-out;
-      max-width: 220px;
-      border: 1px solid #e0e0e0;
-    }
-    .espai-proactive-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      right: 15px;
-      width: 0;
-      height: 0;
-      border-left: 8px solid transparent;
-      border-right: 0 solid transparent;
-      border-top: 8px solid #fff;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
-    }
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      position: fixed !important;
+      bottom: 95px !important;
+      right: 90px !important;
+      background: white !important;
+      color: #333 !important;
+      padding: 14px 16px !important;
+      border-radius: 12px !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
+      cursor: pointer !important;
+      z-index: 999998 !important;
+      max-width: 220px !important;
+      border: 1px solid #e0e0e0 !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
     }
     .espai-proactive-bubble:hover {
-      background: #f5f5f5;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      background: #f5f5f5 !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2) !important;
     }
   `;
   document.head.appendChild(style);
   
-  // Mensaje proactivo
+  // Mensaje proactivo - aparecer después de 4 segundos
   setTimeout(function() {
     const proactiveMsg = document.createElement('div');
     proactiveMsg.className = 'espai-proactive-bubble';
-    proactiveMsg.innerHTML = '👋 Tens alguna pregunta?';
+    proactiveMsg.textContent = '👋 Tens alguna pregunta?';
     
     proactiveMsg.onclick = function() {
       const chatButton = document.querySelector('[class*="bpLauncher"]');
       if (chatButton) {
         chatButton.click();
-        proactiveMsg.remove();
       }
+      proactiveMsg.style.display = 'none';
     };
     
     document.body.appendChild(proactiveMsg);
     
     // Desaparecer después de 10 segundos
     setTimeout(function() {
-      proactiveMsg.style.opacity = '0';
-      proactiveMsg.style.transition = 'opacity 0.3s ease-out';
-      setTimeout(function() {
-        proactiveMsg.remove();
-      }, 300);
+      proactiveMsg.style.display = 'none';
     }, 10000);
-  }, 3000);
+  }, 4000);
   
-  // Ocultar footer (después de 3 segundos)
+  // Ocultar footer
   setTimeout(function() {
     setInterval(function() {
       const root = Array.from(document.querySelectorAll('div')).find(el => {
