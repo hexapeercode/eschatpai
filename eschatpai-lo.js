@@ -17,33 +17,48 @@
     [id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] {
       z-index: 999999 !important;
     }
-    .espai-proactive-msg {
+    .espai-proactive-bubble {
       position: fixed;
-      bottom: 100px;
-      right: 20px;
-      background: #1a1a1a;
-      color: white;
-      padding: 12px 16px;
-      border-radius: 8px;
+      bottom: 95px;
+      right: 90px;
+      background: #fff;
+      color: #333;
+      padding: 14px 16px;
+      border-radius: 12px;
       font-size: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-weight: 500;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
       cursor: pointer;
       z-index: 999998;
-      animation: slideIn 0.3s ease-out;
-      max-width: 250px;
+      animation: slideIn 0.4s ease-out;
+      max-width: 220px;
+      border: 1px solid #e0e0e0;
+    }
+    .espai-proactive-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      right: 15px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 0 solid transparent;
+      border-top: 8px solid #fff;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
     }
     @keyframes slideIn {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateX(20px);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
       }
     }
-    .espai-proactive-msg:hover {
-      background: #333;
+    .espai-proactive-bubble:hover {
+      background: #f5f5f5;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
   `;
   document.head.appendChild(style);
@@ -51,8 +66,8 @@
   // Mensaje proactivo
   setTimeout(function() {
     const proactiveMsg = document.createElement('div');
-    proactiveMsg.className = 'espai-proactive-msg';
-    proactiveMsg.innerHTML = '👋 ¡Hola! ¿Necesitas ayuda?';
+    proactiveMsg.className = 'espai-proactive-bubble';
+    proactiveMsg.innerHTML = '👋 Tens alguna pregunta?';
     
     proactiveMsg.onclick = function() {
       const chatButton = document.querySelector('[class*="bpLauncher"]');
@@ -64,10 +79,14 @@
     
     document.body.appendChild(proactiveMsg);
     
-    // Desaparecer después de 8 segundos
+    // Desaparecer después de 10 segundos
     setTimeout(function() {
-      proactiveMsg.remove();
-    }, 8000);
+      proactiveMsg.style.opacity = '0';
+      proactiveMsg.style.transition = 'opacity 0.3s ease-out';
+      setTimeout(function() {
+        proactiveMsg.remove();
+      }, 300);
+    }, 10000);
   }, 3000);
   
   // Ocultar footer (después de 3 segundos)
