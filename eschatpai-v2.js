@@ -32,9 +32,9 @@ setTimeout(function() {
   var msg = document.createElement('div');
   msg.innerHTML = '👋 <b>Hola! Tens alguna consulta jur\u00EDdica?</b>';
   msg.style.position = 'fixed';
-  msg.style.bottom = '115px';
+  msg.style.bottom = '100px';
   msg.style.right = '24px';
-  msg.style.background = '#1a1a2e';
+  msg.style.background = '#111110';
   msg.style.color = 'white';
   msg.style.padding = '12px 16px';
   msg.style.borderRadius = '10px';
