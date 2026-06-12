@@ -1,16 +1,21 @@
+console.log('SCRIPT INICIADO - ESPAI CHATBOT');
+
 (function() {
+  console.log('Función anónima iniciada');
+  
   // Cargar Botpress
   const script1 = document.createElement('script');
   script1.src = 'https://cdn.botpress.cloud/webchat/v3.6/inject.js';
   document.head.appendChild(script1);
+  console.log('Script 1 añadido');
   
   setTimeout(function() {
     const script2 = document.createElement('script');
     script2.src = 'https://files.bpcontent.cloud/2026/05/19/17/20260519173633-PCRHW6DM.js';
     document.head.appendChild(script2);
+    console.log('Script 2 añadido');
   }, 500);
   
-  // Z-index para chat
   const style = document.createElement('style');
   style.textContent = `
     [id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] {
@@ -18,30 +23,8 @@
     }
   `;
   document.head.appendChild(style);
+  console.log('Estilos añadidos');
   
-  // MENSAJE SIMPLE - PRUEBA
-  setTimeout(function() {
-    const msg = document.createElement('div');
-    msg.style.cssText = `
-      position: fixed;
-      bottom: 150px;
-      right: 50px;
-      background: red;
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      z-index: 99999;
-      cursor: pointer;
-      font-size: 16px;
-    `;
-    msg.textContent = 'PRUEBA: Tens alguna pregunta?';
-    msg.onclick = () => msg.remove();
-    
-    document.body.appendChild(msg);
-    console.log('Mensaje añadido al DOM');
-  }, 2000);
-  
-  // Ocultar footer
   setTimeout(function() {
     setInterval(function() {
       const root = Array.from(document.querySelectorAll('div')).find(el => {
