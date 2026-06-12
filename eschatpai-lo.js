@@ -17,8 +17,58 @@
     [id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] {
       z-index: 999999 !important;
     }
+    .espai-proactive-msg {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: #1a1a1a;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 999998;
+      animation: slideIn 0.3s ease-out;
+      max-width: 250px;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .espai-proactive-msg:hover {
+      background: #333;
+    }
   `;
   document.head.appendChild(style);
+  
+  // Mensaje proactivo
+  setTimeout(function() {
+    const proactiveMsg = document.createElement('div');
+    proactiveMsg.className = 'espai-proactive-msg';
+    proactiveMsg.innerHTML = '👋 ¡Hola! ¿Necesitas ayuda?';
+    
+    proactiveMsg.onclick = function() {
+      const chatButton = document.querySelector('[class*="bpLauncher"]');
+      if (chatButton) {
+        chatButton.click();
+        proactiveMsg.remove();
+      }
+    };
+    
+    document.body.appendChild(proactiveMsg);
+    
+    // Desaparecer después de 8 segundos
+    setTimeout(function() {
+      proactiveMsg.remove();
+    }, 8000);
+  }, 3000);
   
   // Ocultar footer (después de 3 segundos)
   setTimeout(function() {
