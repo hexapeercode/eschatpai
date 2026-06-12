@@ -41,3 +41,25 @@
     }, 300);
   }, 3000);
 })();
+
+// Mensaje proactivo
+setTimeout(function() {
+  const msg = document.createElement('div');
+  msg.style.cssText = `
+    position: fixed;
+    bottom: 120px;
+    right: 100px;
+    background: white;
+    color: #333;
+    padding: 12px 14px;
+    border-radius: 10px;
+    z-index: 9999;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    border: 1px solid #ddd;
+  `;
+  msg.textContent = '👋 Tens alguna pregunta?';
+  msg.onclick = () => msg.remove();
+  document.body.appendChild(msg);
+}, 3000);
