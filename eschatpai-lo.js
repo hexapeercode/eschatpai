@@ -17,55 +17,10 @@
     [id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] {
       z-index: 999999 !important;
     }
-    .espai-proactive-bubble {
-      position: fixed !important;
-      bottom: 95px !important;
-      right: 90px !important;
-      background: white !important;
-      color: #333 !important;
-      padding: 14px 16px !important;
-      border-radius: 12px !important;
-      font-size: 14px !important;
-      font-weight: 500 !important;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
-      cursor: pointer !important;
-      z-index: 999998 !important;
-      max-width: 220px !important;
-      border: 1px solid #e0e0e0 !important;
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-    }
-    .espai-proactive-bubble:hover {
-      background: #f5f5f5 !important;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2) !important;
-    }
   `;
   document.head.appendChild(style);
   
-  // Mensaje proactivo - aparecer después de 4 segundos
-  setTimeout(function() {
-    const proactiveMsg = document.createElement('div');
-    proactiveMsg.className = 'espai-proactive-bubble';
-    proactiveMsg.textContent = '👋 Tens alguna pregunta?';
-    
-    proactiveMsg.onclick = function() {
-      const chatButton = document.querySelector('[class*="bpLauncher"]');
-      if (chatButton) {
-        chatButton.click();
-      }
-      proactiveMsg.style.display = 'none';
-    };
-    
-    document.body.appendChild(proactiveMsg);
-    
-    // Desaparecer después de 10 segundos
-    setTimeout(function() {
-      proactiveMsg.style.display = 'none';
-    }, 10000);
-  }, 4000);
-  
-  // Ocultar footer
+  // Ocultar footer (después de 3 segundos)
   setTimeout(function() {
     setInterval(function() {
       const root = Array.from(document.querySelectorAll('div')).find(el => {
