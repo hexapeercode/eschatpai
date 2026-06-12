@@ -10,44 +10,31 @@
     document.head.appendChild(script2);
   }, 500);
   
-  // Estilos
-  const style = document.createElement('style');
-  style.textContent = `
-    [id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] {
-      z-index: 999999 !important;
-    }
-  `;
+  var style = document.createElement('style');
+  style.textContent = '[id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] { z-index: 999999 !important; }';
   document.head.appendChild(style);
   
-  // Ocultar footer
   setTimeout(function() {
     setInterval(function() {
-      const root = Array.from(document.querySelectorAll('div')).find(el => {
-        try {
-          return el.shadowRoot && el.shadowRoot.querySelector('.bpComposerFooter');
-        } catch(e) {
-          return false;
-        }
+      var root = Array.from(document.querySelectorAll('div')).find(function(el) {
+        try { return el.shadowRoot && el.shadowRoot.querySelector('.bpComposerFooter'); }
+        catch(e) { return false; }
       });
-      
       if (root && root.shadowRoot) {
-        const footer = root.shadowRoot.querySelector('.bpComposerFooter');
-        if (footer) {
-          footer.innerHTML = '';
-        }
+        var footer = root.shadowRoot.querySelector('.bpComposerFooter');
+        if (footer) { footer.innerHTML = ''; }
         root.style.zIndex = '999999';
       }
     }, 300);
   }, 3000);
 })();
 
-// Mensaje proactivo - Hamburguesa
 setTimeout(function() {
   var msg = document.createElement('div');
   msg.innerHTML = '👋 Tens alguna pregunta?';
   msg.style.position = 'fixed';
-  msg.style.bottom = '30px';
-  msg.style.right = '90px';
+  msg.style.bottom = '90px';
+  msg.style.right = '24px';
   msg.style.background = 'white';
   msg.style.color = '#333';
   msg.style.padding = '12px 16px';
@@ -60,7 +47,5 @@ setTimeout(function() {
   msg.style.border = '1px solid #ddd';
   msg.onclick = function() { msg.remove(); };
   document.body.appendChild(msg);
-  
-  // Desaparece después de 10 segundos
   setTimeout(function() { msg.remove(); }, 10000);
 }, 3000);
