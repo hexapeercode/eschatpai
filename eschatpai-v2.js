@@ -53,7 +53,7 @@ setTimeout(function() {
     });
     if (root && root.shadowRoot) {
       var webchat = root.shadowRoot.querySelector('[data-name="webchat"]');
-      if (webchat && webchat.offsetHeight > 100) {
+      if (webchat && !webchat.className.includes('bpClose')) {
         msg.remove();
       }
     }
