@@ -4,7 +4,7 @@
   script1.src = 'https://cdn.botpress.cloud/webchat/v3.6/inject.js';
   document.head.appendChild(script1);
   
-  // Esperar a que inject.js cargue, luego cargar config
+  // Esperar a que inject.js cargue
   setTimeout(function() {
     const script2 = document.createElement('script');
     script2.src = 'https://files.bpcontent.cloud/2026/05/19/17/20260519173633-PCRHW6DM.js';
@@ -20,7 +20,7 @@
   `;
   document.head.appendChild(style);
   
-  // Ocultar footer (después de 3 segundos)
+  // Ocultar footer
   setTimeout(function() {
     setInterval(function() {
       const root = Array.from(document.querySelectorAll('div')).find(el => {
@@ -41,33 +41,26 @@
     }, 300);
   }, 3000);
   
-  // Mensaje proactivo - MEJORADO
+  // Mensaje proactivo VISIBLE
   setTimeout(function() {
-    console.log('Intentando crear mensaje');
-    
     const msg = document.createElement('div');
-    msg.style.cssText = `
-      position: fixed !important;
-      bottom: 120px !important;
-      right: 100px !important;
-      background: white !important;
-      color: #333 !important;
-      padding: 12px 14px !important;
-      border-radius: 10px !important;
-      z-index: 999998 !important;
-      cursor: pointer !important;
-      font-size: 14px !important;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
-      border: 1px solid #ddd !important;
-      display: block !important;
-    `;
-    msg.textContent = '👋 Tens alguna pregunta?';
-    msg.onclick = function() {
-      console.log('Mensaje clickeado');
-      msg.remove();
-    };
+    msg.innerHTML = '👋 Tens alguna pregunta?';
+    msg.style.position = 'fixed';
+    msg.style.top = '50px';
+    msg.style.right = '50px';
+    msg.style.background = '#FFD700';
+    msg.style.color = '#000';
+    msg.style.padding = '16px 20px';
+    msg.style.borderRadius = '10px';
+    msg.style.zIndex = '999999';
+    msg.style.cursor = 'pointer';
+    msg.style.fontSize = '16px';
+    msg.style.fontWeight = 'bold';
+    msg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+    msg.style.border = '2px solid #333';
+    
+    msg.onclick = () => msg.remove();
     
     document.body.appendChild(msg);
-    console.log('Mensaje añadido al DOM', msg);
-  }, 5000);
+  }, 3000);
 })();
