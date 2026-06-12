@@ -1,21 +1,17 @@
-console.log('SCRIPT INICIADO - ESPAI CHATBOT');
-
 (function() {
-  console.log('Función anónima iniciada');
-  
   // Cargar Botpress
   const script1 = document.createElement('script');
   script1.src = 'https://cdn.botpress.cloud/webchat/v3.6/inject.js';
   document.head.appendChild(script1);
-  console.log('Script 1 añadido');
   
+  // Esperar a que inject.js cargue, luego cargar config
   setTimeout(function() {
     const script2 = document.createElement('script');
     script2.src = 'https://files.bpcontent.cloud/2026/05/19/17/20260519173633-PCRHW6DM.js';
     document.head.appendChild(script2);
-    console.log('Script 2 añadido');
   }, 500);
   
+  // Estilos
   const style = document.createElement('style');
   style.textContent = `
     [id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] {
@@ -23,8 +19,8 @@ console.log('SCRIPT INICIADO - ESPAI CHATBOT');
     }
   `;
   document.head.appendChild(style);
-  console.log('Estilos añadidos');
   
+  // Ocultar footer (después de 3 segundos)
   setTimeout(function() {
     setInterval(function() {
       const root = Array.from(document.querySelectorAll('div')).find(el => {
@@ -37,7 +33,9 @@ console.log('SCRIPT INICIADO - ESPAI CHATBOT');
       
       if (root && root.shadowRoot) {
         const footer = root.shadowRoot.querySelector('.bpComposerFooter');
-        if (footer) footer.innerHTML = '';
+        if (footer) {
+          footer.innerHTML = '';
+        }
         root.style.zIndex = '999999';
       }
     }, 300);
