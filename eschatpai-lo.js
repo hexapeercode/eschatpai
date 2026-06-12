@@ -30,19 +30,18 @@
 
 setTimeout(function() {
   var msg = document.createElement('div');
-  msg.innerHTML = '👋 Tens alguna pregunta?';
+  msg.innerHTML = '👋 <b>Hola! Tens alguna consulta jur\u00EDdica?</b>';
   msg.style.position = 'fixed';
   msg.style.bottom = '115px';
   msg.style.right = '24px';
-  msg.style.background = 'white';
-  msg.style.color = '#333';
+  msg.style.background = '#1a1a2e';
+  msg.style.color = 'white';
   msg.style.padding = '12px 16px';
   msg.style.borderRadius = '10px';
   msg.style.zIndex = '999998';
-  msg.style.fontSize = '14px';
-  msg.style.fontWeight = '500';
+  msg.style.fontSize = '15px';
   msg.style.boxShadow = '0 2px 10px rgba(0,0,0,0.15)';
-  msg.style.border = '1px solid #ddd';
+  msg.style.border = 'none';
   msg.style.pointerEvents = 'none';
   msg.style.animation = 'espaiPop 0.4s ease-out';
   document.body.appendChild(msg);
