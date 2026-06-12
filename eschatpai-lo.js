@@ -40,26 +40,34 @@
       }
     }, 300);
   }, 3000);
+  
+  // Mensaje proactivo - MEJORADO
+  setTimeout(function() {
+    console.log('Intentando crear mensaje');
+    
+    const msg = document.createElement('div');
+    msg.style.cssText = `
+      position: fixed !important;
+      bottom: 120px !important;
+      right: 100px !important;
+      background: white !important;
+      color: #333 !important;
+      padding: 12px 14px !important;
+      border-radius: 10px !important;
+      z-index: 999998 !important;
+      cursor: pointer !important;
+      font-size: 14px !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+      border: 1px solid #ddd !important;
+      display: block !important;
+    `;
+    msg.textContent = '👋 Tens alguna pregunta?';
+    msg.onclick = function() {
+      console.log('Mensaje clickeado');
+      msg.remove();
+    };
+    
+    document.body.appendChild(msg);
+    console.log('Mensaje añadido al DOM', msg);
+  }, 5000);
 })();
-
-// Mensaje proactivo
-setTimeout(function() {
-  const msg = document.createElement('div');
-  msg.style.cssText = `
-    position: fixed;
-    bottom: 120px;
-    right: 100px;
-    background: white;
-    color: #333;
-    padding: 12px 14px;
-    border-radius: 10px;
-    z-index: 9999;
-    cursor: pointer;
-    font-size: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    border: 1px solid #ddd;
-  `;
-  msg.textContent = '👋 Tens alguna pregunta?';
-  msg.onclick = () => msg.remove();
-  document.body.appendChild(msg);
-}, 3000);
