@@ -1,11 +1,10 @@
 (function() {
-  // Cargar Botpress
-  const script1 = document.createElement('script');
+  var script1 = document.createElement('script');
   script1.src = 'https://cdn.botpress.cloud/webchat/v3.6/inject.js';
   document.head.appendChild(script1);
   
   setTimeout(function() {
-    const script2 = document.createElement('script');
+    var script2 = document.createElement('script');
     script2.src = 'https://files.bpcontent.cloud/2026/05/19/17/20260519173633-PCRHW6DM.js';
     document.head.appendChild(script2);
   }, 500);
