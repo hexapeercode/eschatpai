@@ -46,5 +46,21 @@ setTimeout(function() {
   msg.style.border = '1px solid #ddd';
   msg.onclick = function() { msg.remove(); };
   document.body.appendChild(msg);
-  setTimeout(function() { msg.remove(); }, 10000);
+  
+  // Vigilar si se abre el chat para ocultar el mensaje
+  setInterval(function() {
+    var chatOpen = document.querySelector('[class*="bpWebchat"]');
+    if (!chatOpen) {
+      var root = Array.from(document.querySelectorAll('div')).find(function(el) {
+        try { return el.shadowRoot && el.shadowRoot.querySelector('[data-name="webchat"]'); }
+        catch(e) { return false; }
+      });
+      if (root && root.shadowRoot) {
+        var webchat = root.shadowRoot.querySelector('[data-name="webchat"]');
+        if (webchat && webchat.offsetHeight > 100) {
+          msg.remove();
+        }
+      }
+    }
+  }, 500);
 }, 3000);
