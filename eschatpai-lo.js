@@ -10,7 +10,7 @@
   }, 500);
   
   var style = document.createElement('style');
-  style.textContent = '[id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] { z-index: 999999 !important; }';
+  style.textContent = '[id*="webchat"], [class*="bpChat"], [class*="bpLauncher"] { z-index: 999999 !important; } @keyframes espaiPop { 0% { transform: scale(0); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }';
   document.head.appendChild(style);
   
   setTimeout(function() {
@@ -32,34 +32,30 @@ setTimeout(function() {
   var msg = document.createElement('div');
   msg.innerHTML = '👋 Tens alguna pregunta?';
   msg.style.position = 'fixed';
-  msg.style.bottom = '90px';
+  msg.style.bottom = '115px';
   msg.style.right = '24px';
   msg.style.background = 'white';
   msg.style.color = '#333';
   msg.style.padding = '12px 16px';
   msg.style.borderRadius = '10px';
   msg.style.zIndex = '999998';
-  msg.style.cursor = 'pointer';
   msg.style.fontSize = '14px';
   msg.style.fontWeight = '500';
   msg.style.boxShadow = '0 2px 10px rgba(0,0,0,0.15)';
   msg.style.border = '1px solid #ddd';
-  msg.onclick = function() { msg.remove(); };
+  msg.style.pointerEvents = 'none';
+  msg.style.animation = 'espaiPop 0.4s ease-out';
   document.body.appendChild(msg);
   
-  // Vigilar si se abre el chat para ocultar el mensaje
   setInterval(function() {
-    var chatOpen = document.querySelector('[class*="bpWebchat"]');
-    if (!chatOpen) {
-      var root = Array.from(document.querySelectorAll('div')).find(function(el) {
-        try { return el.shadowRoot && el.shadowRoot.querySelector('[data-name="webchat"]'); }
-        catch(e) { return false; }
-      });
-      if (root && root.shadowRoot) {
-        var webchat = root.shadowRoot.querySelector('[data-name="webchat"]');
-        if (webchat && webchat.offsetHeight > 100) {
-          msg.remove();
-        }
+    var root = Array.from(document.querySelectorAll('div')).find(function(el) {
+      try { return el.shadowRoot && el.shadowRoot.querySelector('[data-name="webchat"]'); }
+      catch(e) { return false; }
+    });
+    if (root && root.shadowRoot) {
+      var webchat = root.shadowRoot.querySelector('[data-name="webchat"]');
+      if (webchat && webchat.offsetHeight > 100) {
+        msg.remove();
       }
     }
   }, 500);
