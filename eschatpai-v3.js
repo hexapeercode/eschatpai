@@ -38,7 +38,7 @@ setTimeout(function() {
   msg.style.color = 'white';
   msg.style.padding = '12px 16px';
   msg.style.borderRadius = '10px';
-  msg.style.zIndex = '999998';
+  msg.style.zIndex = '9998';
   msg.style.fontSize = '15px';
   msg.style.boxShadow = '0 2px 10px rgba(0,0,0,0.15)';
   msg.style.border = 'none';
